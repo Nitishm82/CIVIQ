@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Department Login — CiviQ</title>
+    <link rel="stylesheet" href="dept-style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+    <div class="login-container">
+        <div class="card login-card">
+            <h1><i class="fas fa-building"></i> Department Login</h1>
+
+            <form id="loginForm">
+                <label for="deptSelect">Select Department</label>
+                <select id="deptSelect" required>
+                    <option value="">-- Choose department --</option>
+                    <option value="Road Repair">Road Repair</option>
+                    <option value="Water Supply">Water Supply</option>
+                    <option value="Electricity">Electricity</option>
+                    <option value="Waste Management">Waste Management</option>
+                    <option value="Street Lighting">Street Lighting</option>
+                    <option value="Traffic Issues">Traffic Issues</option>
+                </select>
+
+                <label for="userName">Your Name</label>
+                <input id="userName" placeholder="e.g., Rajesh Kumar" required />
+
+                <label for="password">Password</label>
+                <input id="password" type="password" placeholder="(demo only)" required />
+
+                <button type="submit" class="btn primary">Sign In</button>
+            </form>
+
+            <p class="muted">This is a simple department login for dashboard access. For production, hook to real auth.
+            </p>
+        </div>
+    </div>
+
+    <script src="dept-script.js"></script>
+</body>
+
+</html>

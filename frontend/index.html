@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CiviQ Driver - Service Worker Portal</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo-section">
+                <h1><i class="fas fa-truck"></i> CiviQ Driver</h1>
+                <span class="driver-badge">Service Worker Portal</span>
+            </div>
+            <div class="driver-info">
+                <div class="driver-avatar">
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="driver-details">
+                    <h3 id="driverName">User Name</h3>
+                    <select id="driverDeptSelect" onchange="switchDepartment(this.value)"
+                        style="padding: 4px; border-radius: 4px; border: 1px solid #ccc; font-size: 0.9em;">
+                        <option value="All Services">All Services</option>
+                        <option value="Road Repair">Road Repair</option>
+                        <option value="Water Supply">Water Supply</option>
+                        <option value="Electricity">Electricity</option>
+                        <option value="Waste Management">Waste Management</option>
+                        <option value="Street Lighting">Street Lighting</option>
+                        <option value="Traffic Issues">Traffic Issues</option>
+
+                    </select>
+                </div>
+                <button class="btn btn-secondary" onclick="logout()" style="margin-left: 15px; padding: 8px 16px;">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </button>
+            </div>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-card pending">
+                <div class="stat-icon"><i class="fas fa-clock"></i></div>
+                <div class="stat-number" id="pendingCount">0</div>
+                <div class="stat-label">Pending Requests</div>
+            </div>
+            <div class="stat-card active">
+                <div class="stat-icon"><i class="fas fa-tasks"></i></div>
+                <div class="stat-number" id="activeCount">0</div>
+                <div class="stat-label">Active Jobs</div>
+            </div>
+            <div class="stat-card completed">
+                <div class="stat-icon"><i class="fas fa-check-circle"></i></div>
+                <div class="stat-number" id="completedCount">0</div>
+                <div class="stat-label">Completed Today</div>
+            </div>
+            <div class="stat-card total">
+                <div class="stat-icon"><i class="fas fa-chart-line"></i></div>
+                <div class="stat-number" id="totalCount">0</div>
+                <div class="stat-label">Total Jobs</div>
+            </div>
+        </div>
+
+        <div class="filter-section">
+            <div class="filter-controls">
+                <div class="filter-group">
+                    <label for="statusFilter">Filter by Status</label>
+                    <select id="statusFilter">
+                        <option value="all">All Requests</option>
+                        <option value="submitted">Submitted</option>
+                        <option value="assigned">Assigned to Me</option>
+                        <option value="in-progress">In Progress</option>
+                        <option value="completed">Completed</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="serviceFilter">Filter by Service</label>
+                    <select id="serviceFilter">
+                        <option value="all">All Services</option>
+                        <option value="Road Repair">Road Repair</option>
+                        <option value="Water Supply">Water Supply</option>
+                        <option value="Electricity">Electricity</option>
+                        <option value="Waste Management">Waste Management</option>
+                        <option value="Street Lighting">Street Lighting</option>
+                        <option value="Traffic Issues">Traffic Issues</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="priorityFilter">Filter by Priority</label>
+                    <select id="priorityFilter">
+                        <option value="all">All Priorities</option>
+                        <option value="urgent">Urgent</option>
+                        <option value="high">High</option>
+                        <option value="medium">Medium</option>
+                        <option value="low">Low</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="requests-container" id="requestsContainer">
+            <!-- Requests will be dynamically loaded here -->
+        </div>
+    </div>
+
+    <div class="modal" id="updateModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fas fa-edit"></i> Update Status</h2>
+                <button class="close-btn" onclick="closeModal()">&times;</button>
+            </div>
+
+            <div class="form-group">
+                <label for="statusUpdate">New Status</label>
+                <select id="statusUpdate">
+                    <!-- Options populated by JS -->
+                </select>
+            </div>
+
+            <div class="form-group" id="departmentForwardGroup" style="display: none;">
+                <label for="forwardDepartment">Select Department</label>
+                <select id="forwardDepartment">
+                    <option value="">-- Choose Department --</option>
+                    <option value="Road Repair">Road Repair</option>
+                    <option value="Water Supply">Water Supply</option>
+                    <option value="Electricity">Electricity</option>
+                    <option value="Waste Management">Waste Management</option>
+                    <option value="Street Lighting">Street Lighting</option>
+                    <option value="Traffic Issues">Traffic Issues</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="updateNotes">Notes / Comments</label>
+                <textarea id="updateNotes" rows="4" placeholder="Add details about the work done..."></textarea>
+            </div>
+
+            <div class="request-actions" style="border: none; padding-top: 0; justify-content: flex-end;">
+                <button class="btn btn-secondary" onclick="closeModal()">Cancel</button>
+                <button class="btn btn-primary" onclick="submitUpdate()">Submit Update</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="notification" id="notification">
+        <i class="fas fa-check-circle"></i>
+        <span id="notificationText"></span>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
