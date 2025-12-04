@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CiviQ Connection Test</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            padding: 20px;
+        }
+
+        .status {
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+
+        .success {
+            background-color: #d4edda;
+            color: #155724;
+        }
+
+        .error {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+
+        .loading {
+            background-color: #e2e3e5;
+            color: #383d41;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Backend Connection Test</h1>
+    <div id="status" class="status loading">Testing connection...</div>
+    <div id="details"></div>
+
+    <script>
+        const statusDiv = document.getElementById('status');
+        const detailsDiv = document.getElementById('details');
+
+        async function testConnection() {
+            try {
+                const response = await fetch('http://localhost:3000/api/dashboard-stats');
+                if (response.ok) {
+                    const data = await response.json();
+                    statusDiv.className = 'status success';
+                    statusDiv.textContent = '✅ Connected to Backend Successfully!';
+                    detailsDiv.innerHTML = `<pre>${JSON.stringify(data, null, 2)}</pre>`;
+                } else {
+                    throw new Error(`Server returned ${response.status} ${response.statusText}`);
+                }
+            } catch (error) {
+                statusDiv.className = 'status error';
+                statusDiv.textContent = '❌ Connection Failed';
+                detailsDiv.textContent = error.message;
+
+                if (error.message.includes('Failed to fetch')) {
+                    detailsDiv.innerHTML += '<br><br><strong>Possible causes:</strong><ul><li>Backend server is not running</li><li>CORS issue (if opening from file://)</li><li>Browser security settings</li></ul>';
+                }
+            }
+        }
+
+        testConnection();
+    </script>
+</body>
+
+</html>
