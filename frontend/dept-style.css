@@ -1,0 +1,250 @@
+/* simple style for department dashboard */
+:root {
+    --bg: #f4f6fb;
+    --card: #fff;
+    --accent: #5b6df6
+}
+
+* {
+    box-sizing: border-box
+}
+
+body {
+    font-family: Inter, Segoe UI, Arial;
+    margin: 0;
+    background: var(--bg);
+    color: #222
+}
+
+.topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 22px;
+    background: var(--card);
+    box-shadow: 0 6px 24px rgba(20, 20, 60, 0.06)
+}
+
+.topbar .left h2 {
+    margin: 0;
+    font-size: 1.1rem;
+    color: var(--accent)
+}
+
+.dept-name {
+    font-size: 0.9rem;
+    color: #666;
+    margin-top: 4px
+}
+
+.right {
+    display: flex;
+    gap: 12px;
+    align-items: center
+}
+
+.btn {
+    padding: 8px 12px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    background: #fff;
+    cursor: pointer
+}
+
+.btn.primary {
+    background: linear-gradient(90deg, var(--accent), #2fb6ff);
+    color: white;
+    border: none
+}
+
+.mainwrap {
+    max-width: 1100px;
+    margin: 20px auto;
+    padding: 0 16px
+}
+
+.controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+    gap: 12px;
+    flex-wrap: wrap
+}
+
+.stats {
+    display: flex;
+    gap: 12px
+}
+
+.stat {
+    background: var(--card);
+    padding: 12px;
+    border-radius: 10px;
+    box-shadow: 0 8px 30px rgba(20, 20, 60, 0.05);
+    min-width: 120px;
+    text-align: center
+}
+
+.stat-num {
+    font-weight: 700;
+    font-size: 1.4rem;
+    color: var(--accent)
+}
+
+.filters {
+    display: flex;
+    gap: 8px;
+    align-items: center
+}
+
+.filters select,
+.filters input {
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #e5e7eb
+}
+
+.requests-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 12px
+}
+
+.request-card {
+    background: var(--card);
+    padding: 14px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(20, 20, 60, 0.06);
+    display: flex;
+    flex-direction: column;
+    gap: 8px
+}
+
+.request-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center
+}
+
+.id {
+    font-weight: 700;
+    color: #333
+}
+
+.status-badge {
+    padding: 6px 10px;
+    border-radius: 16px;
+    background: #eee;
+    font-weight: 600;
+    font-size: 0.85rem
+}
+
+.request-body p {
+    color: #444;
+    margin: 6px 0;
+    font-size: 0.95rem
+}
+
+.request-actions {
+    display: flex;
+    gap: 8px;
+    margin-top: 8px
+}
+
+.small {
+    font-size: 0.9rem;
+    color: #666
+}
+
+.modal {
+    position: fixed;
+    inset: 0;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 500
+}
+
+.modal .modal-body {
+    background: var(--card);
+    padding: 18px;
+    border-radius: 12px;
+    max-width: 640px;
+    width: 95%;
+    box-shadow: 0 20px 60px rgba(10, 10, 40, 0.3)
+}
+
+.modal.active {
+    display: flex
+}
+
+.modal-row {
+    margin: 10px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 6px
+}
+
+.modal-close {
+    position: absolute;
+    right: 24px;
+    top: 18px;
+    border: none;
+    background: none;
+    font-size: 20px;
+    cursor: pointer
+}
+
+.modal-actions {
+    display: flex;
+    gap: 8px;
+    justify-content: flex-end;
+    margin-top: 8px
+}
+
+/* Login styles */
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.login-card {
+    width: 100%;
+    max-width: 400px;
+    padding: 2rem;
+    text-align: center;
+}
+
+.login-card h1 {
+    margin-bottom: 1.5rem;
+    color: var(--accent);
+}
+
+.login-card form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    text-align: left;
+}
+
+.login-card label {
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.login-card input,
+.login-card select {
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #ddd;
+}
+
+.muted {
+    color: #888;
+    font-size: 0.8rem;
+    margin-top: 1rem;
+}

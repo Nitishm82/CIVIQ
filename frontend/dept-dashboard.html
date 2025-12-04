@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Department Dashboard — CiviQ</title>
+    <link rel="stylesheet" href="dept-style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+    <header class="topbar">
+        <div class="left">
+            <h2><i class="fas fa-tools"></i> Department Dashboard</h2>
+            <div id="deptName" class="dept-name">Department</div>
+        </div>
+        <div class="right">
+            <span id="deptUser">User</span>
+            <button id="logoutBtn" class="btn">Logout</button>
+        </div>
+    </header>
+
+    <main class="mainwrap">
+        <section class="controls">
+            <div class="stats">
+                <div class="stat">
+                    <div class="stat-num" id="pendingCount">0</div>
+                    <div class="stat-label">Pending</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-num" id="inProgressCount">0</div>
+                    <div class="stat-label">In Progress</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-num" id="waitingDriverCount">0</div>
+                    <div class="stat-label">Waiting Driver</div>
+                </div>
+            </div>
+
+            <div class="filters">
+                <select id="statusFilter">
+                    <option value="all">All (default hide completed)</option>
+                    <option value="submitted">Submitted</option>
+                    <option value="assigned">Assigned</option>
+                    <option value="in-progress">In Progress</option>
+                    <option value="waiting-driver-update">Waiting Driver Confirmation</option>
+                </select>
+
+                <input id="searchBox" placeholder="Search by ID / location / phone" />
+                <button id="refreshBtn" class="btn">Refresh</button>
+            </div>
+        </section>
+
+        <section id="requestsList" class="requests-list">
+            <!-- Request cards -->
+        </section>
+    </main>
+
+    <!-- Modal for forward / status update -->
+    <div id="modal" class="modal">
+        <div class="modal-body">
+            <button class="modal-close" id="modalClose">&times;</button>
+            <h3 id="modalTitle">Update Request</h3>
+
+            <div class="modal-row">
+                <label for="deptAction">Action</label>
+                <select id="deptAction">
+                    <option value="start">Start Work</option>
+                    <option value="complete">Mark Work Completed</option>
+                    <option value="forward">Forward to another Dept</option>
+                </select>
+            </div>
+
+            <div class="modal-row" id="forwardGroup" style="display:none;">
+                <label for="forwardTo">Forward To</label>
+                <select id="forwardTo">
+                    <option value="">-- Choose department --</option>
+                    <option value="Road Repair">Road Repair</option>
+                    <option value="Water Supply">Water Supply</option>
+                    <option value="Electricity">Electricity</option>
+                    <option value="Waste Management">Waste Management</option>
+                    <option value="Street Lighting">Street Lighting</option>
+                    <option value="Traffic Issues">Traffic Issues</option>
+                </select>
+            </div>
+
+            <div class="modal-row">
+                <label for="notes">Notes (optional)</label>
+                <textarea id="notes" rows="4" placeholder="Add notes..."></textarea>
+            </div>
+
+            <div class="modal-actions">
+                <button id="modalSubmit" class="btn primary">Submit</button>
+                <button id="modalCancel" class="btn">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="dept-script.js"></script>
+</body>
+
+</html>
